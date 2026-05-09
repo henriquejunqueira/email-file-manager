@@ -249,7 +249,7 @@ button {
 }
 
 /* Estiliza o valor da data */
-.data-display .value {
+.date-display.value {
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--primary);
@@ -357,7 +357,7 @@ button {
 
 /* Ajuste específico para áreas de texto longas */
 .form-group textarea {
-  resize: vertical;
+  resize: none;
   min-height: 100px;
 }
 
@@ -495,7 +495,7 @@ button {
 .search-row button {
   white-space: nowrap;
   height: 48px;
-  padding: 016px;
+  padding: 0 16px;
 }
 
 /* Lista de registros */
@@ -519,7 +519,7 @@ button {
   border-bottom: 2px solid var(--border);
 }
 
-.sender-group :last-child {
+.sender-group:last-child {
   border-bottom: none;
 }
 
@@ -606,7 +606,7 @@ button {
   text-align: center;
 }
 
-.record-action {
+.record-actions {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
@@ -692,14 +692,14 @@ button {
   box-shadow: var(--shadow-lg);
 }
 
-.model-header {
+.modal-header {
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 20px;
   color: var(--primary);
 }
 
-.model-close {
+.modal-close {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -743,4 +743,67 @@ button {
   background: var(--alert-info-bg);
   color: var(--alert-info-color);
   border-left: 4px solid var(--accent);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .date-selector {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .date-selector-content {
+    flex-direction: column;
+  }
+
+  .summary {
+    grid-template-columns: 1fr;
+  }
+
+  .sender-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .sender-stats {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .record-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .record-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .data-management {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .data-management button {
+    width: 100%;
+  }
 }

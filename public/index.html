@@ -51,64 +51,65 @@
           <div class="value" id="selectedDate">--/--/----</div>
         </div>
       </div>
-    </main>
 
-    <!-- CARTÕES DE RESUMO DA PÁGINA -->
-    <div class="summary">
-      <div class="summary-card">
-        <div class="summary-card-label">Total de Registros</div>
-        <div class="summary-card-value">
-          <span class="summary-card-icon"
-            ><i class="bi bi-clipboard-check"></i
-          ></span>
-          <span id="totalQuantity">0</span>
-        </div>
-      </div>
-
-      <div class="summary-card">
-        <div class="summary-card-label">Total de Quantidade</div>
-        <div class="summary-card-value">
-          <span class="summary-card-icon"
-            ><i class="bi bi-clipboard-data"></i
-          ></span>
-          <span id="totalQuantity">0</span>
-        </div>
-      </div>
-
-      <div class="summary-card">
-        <div class="summary-card-label">Cidades Únicas</div>
-        <div class="summary-card-value">
-          <span class="summary-card-icon"><i class="bi bi-buildings"></i></span>
-          <span id="totalQuantity">0</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- FORMULÁRIO DE REGISTRO -->
-    <div class="form-section">
-      <h2>Novo Registro</h2>
-      <form id="recordForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="cityName">Nome da Cidade *</label>
-            <input
-              type="text"
-              id="cityName"
-              required
-              placeholder="ex: Caxambu"
-            />
+      <!-- CARTÕES DE RESUMO DA PÁGINA -->
+      <div class="summary">
+        <div class="summary-card">
+          <div class="summary-card-label">Total de Registros</div>
+          <div class="summary-card-value">
+            <span class="summary-card-icon"
+              ><i class="bi bi-clipboard-check"></i
+            ></span>
+            <span id="totalRecords">0</span>
           </div>
+        </div>
 
-          <div class="form-group">
-            <label for="organType">Órgão *</label>
-            <select id="organType" required>
-              <option value="">-- Selecione --</option>
-              <option value="Prefeitura (PM)">Prefeitura (PM)</option>
-              <option value="Câmara (CM)">Câmara (CM)</option>
-              <option value="Outro">Outro</option>
-            </select>
+        <div class="summary-card">
+          <div class="summary-card-label">Total de Quantidade</div>
+          <div class="summary-card-value">
+            <span class="summary-card-icon"
+              ><i class="bi bi-clipboard-data"></i
+            ></span>
+            <span id="totalQuantity">0</span>
           </div>
+        </div>
 
+        <div class="summary-card">
+          <div class="summary-card-label">Cidades Únicas</div>
+          <div class="summary-card-value">
+            <span class="summary-card-icon"
+              ><i class="bi bi-buildings"></i
+            ></span>
+            <span id="totalCities">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMULÁRIO DE REGISTRO -->
+      <div class="form-section">
+        <h2>Novo Registro</h2>
+        <form id="recordForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cityName">Nome da Cidade *</label>
+              <input
+                type="text"
+                id="cityName"
+                required
+                placeholder="ex: Caxambu"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="organType">Órgão *</label>
+              <select id="organType" required>
+                <option value="">-- Selecione --</option>
+                <option value="Prefeitura (PM)">Prefeitura (PM)</option>
+                <option value="Câmara (CM)">Câmara (CM)</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
+          </div>
           <div class="form-group">
             <label for="content">Conteúdo Publicado *</label>
             <textarea
@@ -116,6 +117,17 @@
               required
               placeholder="Descreva o conteúdo publicado..."
             ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="quantity">Quantidade *</label>
+            <input
+              type="number"
+              id="quantity"
+              min="1"
+              required
+              placeholder="0"
+            />
           </div>
 
           <div class="form-actions">
@@ -126,53 +138,53 @@
               <i class="bi bi-arrow-repeat"></i> Limpar
             </button>
           </div>
-        </div>
-      </form>
-    </div>
-
-    <!-- PESQUISA POR CIDADES -->
-    <div class="form-section">
-      <h2><i class="bi bi-search"></i> Pesquisar Cidade</h2>
-
-      <!-- <div class="form-group"> -->
-      <div class="search-row">
-        <input
-          type="text"
-          id="searchCity"
-          placeholder="Digite o nome da cidade..."
-        />
-        <button class="btn-export btn-small" id="exportSearchBtn">
-          <i class="bi bi-file-earmark-arrow-down"></i> Exportar Pesquisa
-        </button>
+        </form>
       </div>
 
-      <div class="searchResults"></div>
-    </div>
+      <!-- PESQUISA POR CIDADES -->
+      <div class="form-section">
+        <h2><i class="bi bi-search"></i> Pesquisar Cidade</h2>
 
-    <!-- SEÇÃO DE CIDADES REGISTRADAS NO DIA -->
-    <div class="records-section">
-      <h2>Registro por cidade</h2>
-      <div id="recordsList"></div>
-    </div>
+        <!-- <div class="form-group"> -->
+        <div class="search-row">
+          <input
+            type="text"
+            id="searchCity"
+            placeholder="Digite o nome da cidade..."
+          />
+          <button class="btn-export btn-small" id="exportSearchBtn">
+            <i class="bi bi-file-earmark-arrow-down"></i> Exportar Pesquisa
+          </button>
+        </div>
 
-    <!-- RESUMO DIÁRIO -->
-    <div class="daily-summary">
-      <h2><i class="bi bi-bar-chart-line"></i> Resumo Diário</h2>
-      <div class="summary-stats">
-        <div class="summary-stat">
-          <div class="summary-stat-label">Total de Registros</div>
-          <div class="summary-stat-value" id="summaryTotalRecords">0</div>
-        </div>
-        <div class="summary-stat">
-          <div class="summary-stat-label">Total de Quantidade</div>
-          <div class="summary-stat-value" id="summaryTotalQuantity">0</div>
-        </div>
-        <div class="summary-stat">
-          <div class="summary-stat-label">Cidades</div>
-          <div class="summary-stat-value" id="summaryTotalCities">0</div>
+        <div id="searchResults"></div>
+      </div>
+
+      <!-- SEÇÃO DE CIDADES REGISTRADAS NO DIA -->
+      <div class="records-section">
+        <h2>Registro por cidade</h2>
+        <div id="recordsList"></div>
+      </div>
+
+      <!-- RESUMO DIÁRIO -->
+      <div class="daily-summary">
+        <h2><i class="bi bi-bar-chart-line"></i> Resumo Diário</h2>
+        <div class="summary-stats">
+          <div class="summary-stat">
+            <div class="summary-stat-label">Total de Registros</div>
+            <div class="summary-stat-value" id="summaryTotalRecords">0</div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat-label">Total de Quantidade</div>
+            <div class="summary-stat-value" id="summaryTotalQuantity">0</div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat-label">Cidades</div>
+            <div class="summary-stat-value" id="summaryTotalCities">0</div>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
 
     <!-- MODAL PARA EDIÇÃO DE REGISTROS -->
     <div id="editModal" class="modal">
@@ -208,16 +220,15 @@
             <label for="editQuantity">Quantidade</label>
             <input type="number" id="editQuantity" min="1" required />
           </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn-primary">
-              <i class="bi bi-floppy"></i> Atualizar
-            </button>
-            <button type="button" class="btn-secondary" id="cancelEditBtn">
-              <i class="bi bi-x-lg"></i> Cancelar
-            </button>
-          </div>
         </form>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">
+            <i class="bi bi-floppy"></i> Atualizar
+          </button>
+          <button type="button" class="btn-secondary" id="cancelEditBtn">
+            <i class="bi bi-x-lg"></i> Cancelar
+          </button>
+        </div>
       </div>
     </div>
 
