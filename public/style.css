@@ -489,3 +489,129 @@ button {
   height: 48px;
   padding: 016px;
 }
+
+/* Lista de registros */
+.records-section {
+  background: var(--bg-card);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  margin-bottom: 40px;
+}
+
+.records-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: var(--primary);
+}
+
+.sender-group {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--border);
+}
+
+.sender-group :last-child {
+  border-bottom: none;
+}
+
+.sender-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  background: var(--bg);
+  border-radius: 6px;
+}
+
+.sender-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.sender-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--accent);
+  color: var(--white);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.sender-stats {
+  display: flex;
+  gap: 20px;
+  font-size: 0.95rem;
+}
+
+.sender-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sender-stat-label {
+  color: var(--text-secondary);
+}
+
+.sender-stat-value {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.record-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 6px;
+  margin-bottom: 10px;
+  gap: 15px;
+}
+
+.record-info {
+  flex: 1;
+}
+
+.record-time {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.record-content {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.record-quantity {
+  font-weight: 600;
+  color: var(--primary);
+  min-width: 60px;
+  text-align: center;
+}
+
+.record-action {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
