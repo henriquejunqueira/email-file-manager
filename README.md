@@ -19,3 +19,20 @@ npm i cors dotenv express mysql
 ```bash
 npm i --save-dev nodemon
 ```
+
+# Estrutura do sistema:
+
+/email-file-manager
+├── config
+├── controllers
+├── db
+├── models
+├── public
+├── routers
+├── .env
+├── .env.example
+├── .gitignore
+├── index.js
+├── package-lock.json
+├── package.json
+└── README.md
