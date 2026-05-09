@@ -5,8 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Email & File Manager</title>
     <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
   </head>
   <body>
+    <!-- HEADER DA PÁGINA -->
+    <header>
+      <div>
+        <h1><i class="bi bi-envelope-at-fill"></i> Email & File Manager</h1>
+        <p>Gerencie seus recebimentos com elegância</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn-export btn-small" id="exportXlsxBtn">
+          <i class="bi bi-filetype-xlsx"></i> XLSX
+        </button>
+        <button class="btn-primary" id="newRecordBtn">
+          <i class="bi bi-plus-circle"></i> Novo
+        </button>
+      </div>
+    </header>
+
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

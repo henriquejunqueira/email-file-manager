@@ -22,7 +22,7 @@ npm i --save-dev nodemon
 
 # Estrutura do sistema:
 
-/email-file-manager
+```/email-file-manager
 ├── config
 └── appCustom.js
 ├── controllers
@@ -46,3 +46,4 @@ npm i --save-dev nodemon
 ├── package-lock.json
 ├── package.json
 └── README.md
+```
