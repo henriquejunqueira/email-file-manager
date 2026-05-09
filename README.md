@@ -7,3 +7,9 @@
 ```bash
 npm init -y
 ```
+
+# Instalação de dependências nodejs:
+
+```bash
+npm i cors dotenv express mysql
+```
