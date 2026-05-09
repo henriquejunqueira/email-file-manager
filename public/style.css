@@ -42,3 +42,48 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+/* Header da página */
+
+/* Estilização da barra superior */
+header {
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  padding: 40px 0;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 40px;
+}
+
+/* Organização dos elementos internos do header */
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Estilo do título principal */
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Subtítulo ou descrição */
+header p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-top: 5px;
+}
+
+/* Grupo de botões ou links no lado direito */
+.header-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
