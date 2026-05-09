@@ -286,3 +286,77 @@ button {
   font-size: 1.8rem;
   opacity: 0.7;
 }
+
+/* Formulário de cadastro */
+
+/* Seção que envolve todo o formulário */
+.form-section {
+  background: var(--bg-card);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  margin-bottom: 40px;
+}
+
+/* Título da seção do formulário */
+.form-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: var(--primary);
+}
+
+/* Container para cada campo */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Rótulo do campo */
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+/* Estilo comum para Inputs, Selects e Textareas */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+/* Estado de Foco: Quando o usuário clica ou tabula no campo */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Ajuste específico para áreas de texto longas */
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Organiza campos lado a lado */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Área dos botões de ação */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
