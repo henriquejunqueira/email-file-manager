@@ -24,11 +24,21 @@ npm i --save-dev nodemon
 
 /email-file-manager
 ├── config
+└── appCustom.js
 ├── controllers
+└── publicacaoController.js
 ├── db
+├── conexao.js
+└── tabelas.js
 ├── models
+└── publicacaoModel.js
 ├── public
+├── index.html
+├── script.js
+└── style.css
 ├── routers
+├── index.js
+└── publicacaoRouter.js
 ├── .env
 ├── .env.example
 ├── .gitignore
