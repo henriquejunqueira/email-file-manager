@@ -1,0 +1,12 @@
+{
+  "name": "email-file-manager",
+  "version": "1.0.0",
+  "description": "### Sistema de CRUD para gerenciamento de e-mails de publicações do Jornal Panorama",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
