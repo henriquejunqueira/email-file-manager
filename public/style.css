@@ -25,6 +25,12 @@
   --btn-danger-hover: #dc2626;
   --btn-edit-hover: #0284c7;
   --btn-export-hover: #059669;
+  --border-search-city: #e5e7eb;
+  --border-search-results: #e5e7eb;
+  --border-color-search-city: #2563eb;
+  --box-shadow-focus-form: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  --box-shadow-focus-search-city: 0 0 0 4px rgba(37, 99, 235, 0.12);
+  --box-shadow-search-results: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* Define as configurações de aparência para todo o corpo do sistema */
@@ -338,7 +344,7 @@ button {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--primary-light);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: var(--box-shadow-focus-form);
 }
 
 /* Ajuste específico para áreas de texto longas */
@@ -359,4 +365,127 @@ button {
   display: flex;
   gap: 12px;
   margin-top: 25px;
+}
+
+/* Área de pesquisa */
+
+/* Campo de entrada de busca por cidades */
+#searchCity {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--border-search-city);
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.2s;
+  background: var(--white);
+}
+
+/* Efeito de foco no campo de busca */
+#searchCity:focus {
+  border-color: var(--border-color-search-city);
+  box-shadow: var(--box-shadow-focus-search-city);
+}
+
+/* Container que envolve os resultados encontrados */
+#searchResults {
+  margin-top: 18px;
+}
+
+/* Agrupamento por remetente (Card que envolve vários registros) */
+#searchResults .send-group {
+  margin-bottom: 18px;
+  border: 1px solid var(--border-search-results);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: var(--box-shadow-search-results);
+}
+
+/* Cabeçalho do grupo */
+#searchResults .send-header {
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #256, #1d4ed8);
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* Tamanho da fonte */
+#searchResults .sender-name {
+  font-size: 16px;
+}
+
+/* Item individual dentro de um grupo */
+#searchResults .record-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* Efeito visual ao passar o mouse em cada linha de resultado */
+#searchResults .record-item:hover {
+  background: var(--bg);
+}
+
+/* Área de texto do registro */
+#searchResults .record-info {
+  flex: 1;
+}
+
+/* Horário ou data do registro em destaque */
+#searchResults .record-time {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 4px;
+}
+
+/* Conteúdo ou descrição do registro */
+#searchResults .record-content {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Indicador de quantidade */
+#searchResults .record-quantity {
+  min-width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* Estado vazio (Aviso quando nada é encontrado) */
+#searchResults .empty-state {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-secondary);
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+/* Linha que agrupa o Input e o Botão de busca lado a lado */
+.search-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Força o input de busca a ocupar todo o espaço restante na linha */
+.search-row #searchCity {
+  flex: 1;
+}
+
+/* Ajuste de altura e largura para o botão exportar pesquisa ao lado do campo de pesquisa */
+.search-row button {
+  white-space: nowrap;
+  height: 48px;
+  padding: 016px;
 }
