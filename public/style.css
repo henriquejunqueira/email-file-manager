@@ -31,6 +31,14 @@
   --box-shadow-focus-form: 0 0 0 3px rgba(59, 130, 246, 0.1);
   --box-shadow-focus-search-city: 0 0 0 4px rgba(37, 99, 235, 0.12);
   --box-shadow-search-results: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --alert-success-bg: #d1fae5;
+  --alert-success-color: #065f46;
+  --alert-error-bg: #fee2e2;
+  --alert-error-color: #7f1d1d;
+  --alert-warning-bg: #fef3c7;
+  --alert-warning-color: #78350f;
+  --alert-info-bg: #dbeafe;
+  --alert-info-color: #0c2340;
 }
 
 /* Define as configurações de aparência para todo o corpo do sistema */
@@ -700,4 +708,39 @@ button {
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--text-secondary);
+}
+
+/* Alertas */
+.alert {
+  padding: 15px 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.alert.show {
+  display: block;
+}
+.alert-success {
+  background: var(--alert-success-bg);
+  color: var(--alert-success-color);
+  border-left: 4px solid var(--success);
+}
+
+.alert-error {
+  background: var(--alert-error-bg);
+  color: var(--alert-error-color);
+  border-left: 4px solid var(--danger);
+}
+
+.alert-warning {
+  background: var(--alert-warning-bg);
+  color: var(--alert-warning-color);
+  border-left: 4px solid var(--warning);
+}
+
+.alert-info {
+  background: var(--alert-info-bg);
+  color: var(--alert-info-color);
+  border-left: 4px solid var(--accent);
 }
