@@ -27,6 +27,30 @@
       </div>
     </header>
 
+    <!-- MAIN DA PÁGINA -->
+    <main class="container">
+      <!-- Alertas de cadastro, remoção, alteração e demais eventos -->
+      <div id="alert" class="alert"></div>
+
+      <!-- Seletor de datas -->
+      <div class="date-selector">
+        <div class="date-selector-nav">
+          <button class="btn-secondary" id="prevDayBtn">
+            <i class="bi bi-arrow-left"></i> Dia Anterior
+          </button>
+          <button class="btn-secondary" id="todayBtn">Hoje</button>
+          <button class="btn-secondary" id="nextDayBtn">
+            Próximo dia <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+
+        <div class="date-display">
+          <div class="label">Data Selecionada</div>
+          <div class="value" id="selectedDate">--/--/----</div>
+        </div>
+      </div>
+    </main>
+
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script src="./script.js"></script>
   </body>
