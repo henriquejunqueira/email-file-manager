@@ -92,7 +92,7 @@ header p {
   flex-wrap: wrap;
 }
 
-/* Botões a página */
+/* Botões da página */
 
 /* Aplicado a todos os botões do site */
 button {
@@ -163,4 +163,126 @@ button {
 .btn-small {
   padding: 8px 16px;
   font-size: 0.85rem;
+}
+
+/* Seção de gerenciamento de datas */
+.data-management {
+  background: var(--bg-card);
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.data-management-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Seletor de datas */
+.date-selector {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Área central que contém a informação da data */
+.date-selector-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Grupo de botões de navegação (Anterior/Próximo) */
+.date-selector-nav {
+  display: flex;
+  gap: 10px;
+}
+
+/* Ajuste específico para os botões dentro do seletor de data */
+.date-selector-nav button {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
+
+/* Estiliza o bloco que exibe a data atual */
+.date-display {
+  text-align: center;
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Estiliza a etiqueta que exibe o mês atual */
+.date-display .label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Estiliza o valor da data */
+.data-display .value {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 5px;
+}
+
+/* Cartões de Resumo da página */
+
+/* Grade que organiza os cards */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.summary-card {
+  background: var(--bg-card);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.summary-card-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.summary-card-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.summary-card-icon {
+  font-size: 1.8rem;
+  opacity: 0.7;
 }
