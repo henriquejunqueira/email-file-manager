@@ -13,3 +13,9 @@ npm init -y
 ```bash
 npm i cors dotenv express mysql
 ```
+
+# Instalação de dependências de desenvolvedor nodejs:
+
+```bash
+npm i --save-dev nodemon
+```
