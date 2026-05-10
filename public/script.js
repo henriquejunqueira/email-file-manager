@@ -54,3 +54,47 @@ async function carregarRegistros() {
 }
 
 // Funções utilitárias
+
+// Função de formatação da data
+function formatData(date) {
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+
+  return date.toLocaleDateString('pt-BR', options);
+}
+
+// Converte um objeto de data para uma string formatada e retorna a data no formato "AAAA-MM-DD"
+function getDateKey(date) {
+  return date.toISOString().split('T')[0];
+}
+
+// Exibe uma mensagem de feedback visual para o usuário
+function showAlert(message, type = 'success') {
+  const alertEl = document.getElementById('alert');
+  alertEl.textContent = message;
+  alertEl.className = `alert show alert-${type}`;
+  setTimeout(() => alertEl.classList.remove('show'), 3000);
+}
+
+// Gera um id alfanumérico juntando o tempo atual com uma sequência aleatória
+function generateId() {
+  return Date.now() + Math.random().toString(36).substr(2, 9);
+}
+
+// Define o órgão que será exibido na lista de registros na tela
+function getOrganLabel(organ) {
+  if (organ === 'PM') return 'PM';
+  if (organ === 'CM') return 'CM';
+  return '';
+}
+
+function updateRecordsCount() {
+  const el = document.getElementById('recordsCount');
+  if (el) {
+    el.textContent = `${records.length} registros salvos`;
+  }
+}
