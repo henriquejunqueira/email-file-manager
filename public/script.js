@@ -184,3 +184,20 @@ async function deleteRecord(id) {
 
   await carregarRegistros();
 }
+
+// Renderização
+
+// Calcula e atualiza os números dos cards de resumo superiores
+function updateSummary() {
+  const dayRecords = getRecordsForDate(currentDate);
+  const totalRecords = dayRecords.length;
+  const totalQuantity = dayRecords.reduce((sum, r) => sum + r.quantity, 0);
+  const uniqueCities = new Set(dayRecords.map((r) => r.cityName)).size;
+
+  document.getElementById('totalRecords').textContent = totalRecords;
+  document.getElementById('totalQuantity').textContent = totalQuantity;
+  document.getElementById('totalCities').textContent = uniqueCities;
+  document.getElementById('summaryTotalRecords').textContent = totalRecords;
+  document.getElementById('summaryTotalQuantity').textContent = totalQuantity;
+  document.getElementById('summaryTotalCities').textContent = uniqueCities;
+}
