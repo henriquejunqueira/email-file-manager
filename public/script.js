@@ -175,3 +175,12 @@ async function updateRecords(id, cityName, organType, content, quantity) {
 
   await carregarRegistros();
 }
+
+// Remove um registro do banco de dados
+async function deleteRecord(id) {
+  await fetch(`${api}/${id}`, {
+    method: 'DELETE',
+  });
+
+  await carregarRegistros();
+}
