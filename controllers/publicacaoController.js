@@ -8,7 +8,7 @@ class PublicacaoController {
       .catch((error) => res.status(400).json(error.message));
   }
 
-  criarPublicacoe(req, res) {
+  criarPublicacao(req, res) {
     publicacoesModel
       .cadastrarPublicacoes(req.body)
       .then((publicacaoCriada) => res.status(201).json(publicacaoCriada))
