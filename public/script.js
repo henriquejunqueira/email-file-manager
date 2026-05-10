@@ -152,3 +152,26 @@ async function addRecord(cityName, organType, content, quantity) {
 
   await carregarRegistros();
 }
+
+// Atualiza um registro existente
+async function updateRecords(id, cityName, organType, content, quantity) {
+  const registroOriginal = records.find((r) => r.id == id);
+
+  if (!registroOriginal) return;
+
+  await fetch(`${api}/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      cityName,
+      organType,
+      content,
+      quantity: parseInt(quantity),
+      date: registroOriginal.date,
+    }),
+  });
+
+  await carregarRegistros();
+}
