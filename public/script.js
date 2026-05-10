@@ -98,3 +98,57 @@ function updateRecordsCount() {
     el.textContent = `${records.length} registros salvos`;
   }
 }
+
+// Funções de operação com dados
+
+// Filtra a lista global de registros para retornar apenas os de uma data específica
+function getRecordsForDate(date) {
+  const dateKey = getDateKey(date);
+
+  return records.filter((r) => {
+    if (!r.date) return false;
+
+    const recordDate = new Date(r.date);
+    return getDateKey(recordDate) === dateKey;
+  });
+}
+
+// Formata um objeto Date para o padrão DATETIME do MySQL (AAAA-MM-DD HH:mm:ss)
+function formatDateToMySQL(date) {
+  const pad = (n) => String(n).padStart(2, '0');
+
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+}
+
+// Envia um novo registro para a API
+async function addRecord(cityName, organType, content, quantity) {
+  const dataSelecionada = new Date(currentDate);
+
+  const agora = Date();
+
+  // Ajusta a data do calendário para ter o horário atual do relógio
+  dataSelecionada.setHours(
+    agora.getHours(),
+    agora.getMinutes(),
+    agora.getSeconds(),
+  );
+
+  const novo = {
+    cityName,
+    organType,
+    content,
+    quantity: parseInt(quantity),
+    date: formatDateToMySQL(dataSelecionada),
+  };
+
+  // Envia para o servidor via método POST
+  await fetch(api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(novo),
+  });
+
+  await carregarRegistros();
+}
