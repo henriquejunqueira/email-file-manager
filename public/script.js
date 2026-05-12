@@ -201,3 +201,91 @@ function updateSummary() {
   document.getElementById('summaryTotalQuantity').textContent = totalQuantity;
   document.getElementById('summaryTotalCities').textContent = uniqueCities;
 }
+
+// Atualiza display de data
+function updateDateDisplay() {
+  document.getElementById('selectedDate').textContent = formatData(currentDate);
+}
+
+// Renderiza os registros
+function renderRecords() {
+  const dayRecords = getRecordsForDate(currentDate);
+  const recordsList = document.getElementById('recordsList');
+
+  if (dayRecords.length === 0) {
+    recordsList.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon><i class="bi bi-mailbox"></i></div>
+        <p>Nenhum registro para este dia</p>
+      </div>
+    `;
+
+    return;
+  }
+
+  // Agrupa por cidade
+  const grouped = {};
+  dayRecords.forEach((record) => {
+    if (!grouped[record.cityName]) {
+      grouped[record.cityName] = [];
+    }
+
+    grouped[record.cityName].push(record);
+  });
+
+  let html = '';
+
+  Object.entries(grouped).forEach(([cityName, cityRecords]) => {
+    const totalQuantity = cityRecords.reduce((sum, r) => sum + r.quantity, 0);
+
+    html += `
+      <div class="sender-group">
+        <div class="sender-header">
+          <div>
+            <div class="sender-name">${cityName}</div>
+          </div>
+          <div class="sender-stats">
+            <div class="sender-stat">
+              <span class="sender-stat-label">Total:</span>
+              <span class="sender-stat-value">${totalQuantity}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    cityRecords.forEach((record) => {
+      const time = new Date(record.date).toLocaleTimeString('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+
+      const organLabel = getOrganLabel(record.organType);
+
+      html += `
+        <div class="record-item">
+          <div class="record-info">
+            <div class="record-time">${time} ${organLabel ? `[${organLabel}]` : ''}</div>
+            <div class="record-content">${record.content}</div>
+          </div>
+          <div class="record-quantity">${record.quantity}</div>
+          <div class="record-actions">
+            <button class="btn-edit" data-action="edit" data-id="${record.id}"><i class="bi bi-pencil"></i></button>
+            <button class="btn-danger" data-action="delete" data-id="${record.id}"><i class="bi bi-trash"></i></button>
+          </div>
+        </div>
+      `;
+    });
+
+    html += '</div>';
+  });
+
+  recordsList.innerHTML = html;
+}
+
+function render() {
+  updateDateDisplay();
+  updateSummary();
+  renderRecords();
+  updateRecordsCount();
+}
