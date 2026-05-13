@@ -514,3 +514,69 @@ function pesquisarCidade(texto) {
 
   container.innerHTML = html;
 }
+
+document
+  .getElementById('exportSearchBtn')
+  .addEventListener('click', exportarPesquisaXlsx);
+
+function exportarPesquisaXlsx() {
+  try {
+    const termo = document
+      .getElementById('searchCity')
+      .value.trim()
+      .toLowerCase();
+
+    if (!termo) {
+      showAlert('Digite uma cidade para pesquisar', 'warning');
+      return;
+    }
+
+    const encontrados = records.filter((r) =>
+      r.cityName.toLowerCase().includes(termo),
+    );
+
+    if (encontrados.length === 0) {
+      showAlert('Nenhum resutado encontrado', 'warning');
+      return;
+    }
+
+    const data = [
+      ['Data', 'Cidade', 'Órgão', 'Conteúdo Publicado', 'Quantidade'],
+    ];
+
+    encontrados.forEach((r) => {
+      data.push([
+        formatDate(new Date(r.date)),
+        r.cityName,
+        r.organType,
+        r.content,
+        r.quantity,
+      ]);
+    });
+
+    const ws = XLSX.utils.aoa_to_sheet(data);
+
+    ws['!cols'] = [
+      { wch: 22 },
+      { wch: 20 },
+      { wch: 20 },
+      { wch: 45 },
+      { wch: 12 },
+    ];
+
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Pesquisa');
+
+    const fileName = `pesquisa-${termo}.xlsx`;
+
+    XLSX.writeFile(wb, fileName);
+
+    showAlert('Relatório gerado com sucesso!', 'success');
+  } catch (error) {
+    console.error(error);
+    showAlert('Erro ao gerar relatório', 'error');
+  }
+}
+
+// Inicialização
+initializeApp();
