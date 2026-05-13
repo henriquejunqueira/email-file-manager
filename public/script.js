@@ -56,7 +56,7 @@ async function carregarRegistros() {
 // Funções utilitárias
 
 // Função de formatação da data
-function formatData(date) {
+function formatDate(date) {
   const options = {
     weekday: 'long',
     year: 'numeric',
@@ -204,7 +204,7 @@ function updateSummary() {
 
 // Atualiza display de data
 function updateDateDisplay() {
-  document.getElementById('selectedDate').textContent = formatData(currentDate);
+  document.getElementById('selectedDate').textContent = formatDate(currentDate);
 }
 
 // Renderiza os registros
@@ -449,4 +449,68 @@ async function deleteRecordConfirm(recordId) {
     render();
     showAlert('Registro deletado com sucesso!', 'success');
   }
+}
+
+// Pesquisa cidade
+function pesquisarCidade(texto) {
+  const container = document.getElementById('searchResults');
+
+  if (!texto.trim()) {
+    container.innerHTML = '';
+    return;
+  }
+
+  const termo = texto.toLowerCase();
+
+  const encontrados = records.filter((r) =>
+    r.cityName.toLowerCase().includes(termo),
+  );
+
+  if (encontrados.length === 0) {
+    container.innerHTML = `
+      <div class=""empty-state>
+        <p>Nenhum resultdo encontrado</p>
+      </div>
+    `;
+    return;
+  }
+
+  // Agrupa por data
+  const grouped = {};
+
+  encontrados.forEach((r) => {
+    const data = getDateKey(new Date(r.date));
+
+    if (!grouped[data]) grouped[data] = [];
+    grouped[data].push(r);
+  });
+
+  let html = '';
+
+  Object.entries(grouped)
+    .sort((a, b) => b[0].localeCompare(a[0]))
+    .forEach(([data, lista]) => {
+      html += `
+      <div class'sender-group>
+        <div class='sender-name'><i class="bi bi-calendar-date"></i> ${formatDate(new Date(data))}</div>
+        </div>
+    `;
+
+      lista.forEach((r) => {
+        html += `
+        <div class="record-item">
+          <div class="record-info">
+            <div class="record-time">${r.cityName} - ${r.organType}</div>
+            <div class="record-content">${r.content}</div>
+          </div>
+
+          <div class="record-quantity">${r.quantity}</div>
+        </div>
+      `;
+      });
+
+      html += `</div>`;
+    });
+
+  container.innerHTML = html;
 }
