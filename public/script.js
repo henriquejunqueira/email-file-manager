@@ -441,3 +441,12 @@ document.getElementById('closeModalBtn').addEventListener('click', () => {
 document.getElementById('cancelEditBtn').addEventListener('click', () => {
   document.getElementById('editModal').classList.remove('active');
 });
+
+// Verifica se o usuário quer remover o registro
+async function deleteRecordConfirm(recordId) {
+  if (confirm('Tem certeza que deseja deletar este registro?')) {
+    await deleteRecord(recordId);
+    render();
+    showAlert('Registro deletado com sucesso!', 'success');
+  }
+}
