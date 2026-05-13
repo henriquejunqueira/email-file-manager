@@ -395,3 +395,49 @@ document.getElementById('exportXlsxBtn').addEventListener('click', () => {
     showAlert('Erro ao exportar arquivo. Tente novamente.', 'error');
   }
 });
+
+// Edição de registro
+function editRecord(recordId) {
+  const record = records.find((r) => r.id == recordId);
+
+  if (!record) return;
+
+  editingRecordId = recordId;
+
+  document.getElementById('editRecordId').value = recordId;
+  document.getElementById('editCityName').value = record.cityName;
+  document.getElementById('editOrganType').value = record.organType;
+  document.getElementById('editContent').value = record.content;
+  document.getElementById('editQuantity').value = record.quantity;
+
+  document.getElementById('editModal').classList.add('active');
+}
+
+window.editRecord = editRecord;
+
+document.getElementById('editForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const cityName = document.getElementById('editCityName').value.trim();
+  const organType = document.getElementById('editOrganType').value;
+  const content = document.getElementById('editContent').value.trim();
+  const quantity = document.getElementById('editQuantity').value;
+
+  if (!cityName || !content || !quantity) {
+    showAlert('Por favor, preencha todos os campos obrigatórios', 'error');
+    return;
+  }
+
+  await updateRecord(editingRecordId, cityName, organType, content, quantity);
+  document.getElementById('editModal').classList.remove('active');
+  render();
+  showAlert('Registro atualizado com sucesso!', 'success');
+});
+
+document.getElementById('closeModalBtn').addEventListener('click', () => {
+  document.getElementById('editModal'.classList.remove('active'));
+});
+
+document.getElementById('cancelEditBtn').addEventListener('click', () => {
+  document.getElementById('editModal').classList.remove('active');
+});
