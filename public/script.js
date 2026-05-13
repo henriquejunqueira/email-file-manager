@@ -289,3 +289,58 @@ function render() {
   renderRecords();
   updateRecordsCount();
 }
+
+// Manipuladores de eventos
+
+// Captura os dados do formulário, valida e envia para o banco de dados
+document.getElementById('recordForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // Captura os valores dos inputs e remove espaços inúteis nas pontas (.trim())
+  const cityName = document.getElementById('cityName').value.trim();
+  const organType = document.getElementById('organType').value;
+  const content = document.getElementById('content').value.trim();
+  const quantity = document.getElementById('quantity').value;
+
+  // Validação manual: Se algum campo obrigatório estiver vazio, para a execução
+  if (!cityName || !content || !quantity) {
+    showAlert('Por favor, preencha todos os campos obrigatórios', 'error');
+    return;
+  }
+
+  // Tenta salvar o registro na API
+  await addRecord(cityName, organType, content, quantity);
+
+  // Limpa o formulário após o salvamento
+  document.getElementById('recordForm').reset();
+
+  // Atualiza os dados locais e redesenha a interface para mostrar o novo item
+  await carregarRegistros();
+  render();
+
+  // Exibe a notificação de sucesso para o usuário
+  showAlert('Registro adicionado com sucesso!', 'success');
+});
+
+// Reseta o formulário e rola a página suavemente até ele
+document.getElementById('newRecordBtn').addEventListener('click', () => {
+  document.getElementById('recordForm').reset();
+  document.getElementById('recordForm').scrollIntoView({ behavior: 'smooth' });
+});
+
+// Diminui um dia da data atual e atualiza a tela
+document.getElementById('prevDayBtn').addEventListener('click', () => {
+  currentDate.setDate(currentDate.getDate() - 1);
+  render();
+});
+
+// Aumenta um dia na data atual e atualiza a tela
+document.getElementById('nextDayBtn').addEventListener('click', () => {
+  currentDate.setDate(currentDate.getDate() + 1);
+});
+
+// Reseta a data do calendário para a data atual do computador
+document.getElementById('todayBtn').addEventListener('click', () => {
+  currentDate = new Date();
+  render();
+});
