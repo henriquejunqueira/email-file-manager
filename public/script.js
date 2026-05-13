@@ -344,3 +344,54 @@ document.getElementById('todayBtn').addEventListener('click', () => {
   currentDate = new Date();
   render();
 });
+
+// Exportação XLSX
+document.getElementById('exportXlsxBtn').addEventListener('click', () => {
+  try {
+    const dayRecords = getRecordsForDate(currentDate);
+
+    if (dayRecords.length === 0) {
+      showAlert('Nenhum registro para exportar', 'warning');
+      return;
+    }
+
+    // Prepara os dados para XLSX
+    const data = [
+      ['Nome da Cidade', 'Órgão', 'Conteúdo Publicado', 'Quantidade'],
+    ];
+
+    dayRecords.forEach((record) => {
+      data.push([
+        record.cityName || '',
+        record.organType || '',
+        record.content || '',
+        record.quantity || 0,
+      ]);
+    });
+
+    // Cria um workbook
+    const ws = XLSX.utils.aoa_to_sheet(data);
+
+    // Ajusta a largura das colunas
+    ws['!cols'] = [
+      { wch: 20 }, // Nome da Cidade
+      { wch: 10 }, // Órgão
+      { wch: 40 }, // Conteúdo Publicado
+      { wch: 12 }, // Quantidade
+    ];
+
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Registros');
+
+    // Gera nome do arquivo
+    const dateStr = getDateKey(currentDate);
+    const fileName = `registros-${dateStr}.xlsx`;
+
+    // Baixa arquivo
+    XLSX.writeFile(wb, fileName);
+    showAlert('Arquivo XLSX exportado com sucesso!', 'success');
+  } catch (error) {
+    console.log('Erro ao exportar: ', error);
+    showAlert('Erro ao exportar arquivo. Tente novamente.', 'error');
+  }
+});
