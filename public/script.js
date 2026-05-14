@@ -259,7 +259,6 @@ function renderRecords() {
             </div>
           </div>
         </div>
-      </div>
     `;
 
     cityRecords.forEach((record) => {
