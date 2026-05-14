@@ -100,3 +100,11 @@ npm run dev
 ```bash
 npm start
 ```
+
+![Header](/public/img/1.png 'Header')
+
+![Cadastro](/public/img/2.png 'Cadastro')
+
+![Registro e pesquisar](/public/img/3.png 'Registro e pesquisar')
+
+![Rodapé](/public/img/4.png 'Rodapé')

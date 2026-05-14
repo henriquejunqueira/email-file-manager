@@ -3,14 +3,16 @@ class Tabelas {
 
   criarTabelaPublicacoes() {
     const sql = `
-        create table if not exists publicacoes(
-            id int not null auto_increment primary key,
-            cityName varchar(100),
-            organType enum("Prefeitura (PM)", "Câmara (CM)", "Outro") default "Prefeitura (PM)",
-            content varchar(255),
-            quantity int,
-            date datetime not null default current_timestamp
-        )`;
+        CREATE TABLE IF NOT EXISTS publicacoes (
+          id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+          cityName VARCHAR(100) NOT NULL,
+          -- Usamos VARCHAR(20) para suportar "PM", "CM" e "Agencia" sem erros de truncamento
+          organType VARCHAR(20) DEFAULT "PM",
+          content VARCHAR(255) NOT NULL,
+          quantity INT NOT NULL,
+          -- DATETIME armazena data e hora. O default é o momento do insert.
+          date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+        );`;
 
     this.conexao.query(sql, (error) => {
       if (error) {
