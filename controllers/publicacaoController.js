@@ -1,15 +1,17 @@
-const publicacoesModel = require('../models/publicacaoModel');
+const publicacaoModel = require('../models/publicacaoModel');
 
 class PublicacaoController {
   buscarPublicacoes(req, res) {
-    publicacoesModel
+    publicacaoModel
       .listarPublicacoes()
       .then((publicacoes) => res.status(200).json(publicacoes))
       .catch((error) => res.status(400).json(error.message));
   }
 
   criarPublicacao(req, res) {
-    publicacoesModel
+    console.log(req.body);
+
+    publicacaoModel
       .cadastrarPublicacoes(req.body)
       .then((publicacaoCriada) => res.status(201).json(publicacaoCriada))
       .catch((error) => {
@@ -21,7 +23,7 @@ class PublicacaoController {
   atualizarPublicacao(req, res) {
     const { id } = req.params;
 
-    publicacoesModel
+    publicacaoModel
       .atualizarPublicacoes(req.body, id)
       .then((resultado) => res.status(200).json(resultado))
       .catch((error) => res.status(400).json(error.message));
@@ -30,7 +32,7 @@ class PublicacaoController {
   deletarPublicacao(req, res) {
     const { id } = req.params;
 
-    publicacoesModel
+    publicacaoModel
       .deletarPublicacoes(id)
       .then((resultado) => res.status(200).json(resultado))
       .catch((error) => res.status(400).json(error.message));

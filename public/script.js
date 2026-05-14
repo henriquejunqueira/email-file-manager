@@ -4,23 +4,13 @@ const form = document.getElementById('recordForm');
 const lista = document.getElementById('recordsList');
 const searchInput = document.getElementById('searchCity');
 
-// Variáveis de gerenciamento de estado
-let currentDate = new Date();
-let records = [];
-let editingRecordId = null;
-
-// Inicialização do sistema
-async function initializeApp() {
-  await carregarRegistros();
-}
-
 // Evento de pesquisa de cidades
 searchInput.addEventListener('input', () => {
   pesquisarCidade(searchInput.value);
 });
 
 // Eventos de registro de cidades (editar e remover)
-document.getElementById('recordList').addEventListener('click', async (e) => {
+document.getElementById('recordsList').addEventListener('click', async (e) => {
   const btn = e.target.closest('button');
 
   if (!btn) return;
@@ -40,6 +30,17 @@ document.getElementById('recordList').addEventListener('click', async (e) => {
     await deleteRecordConfirm(id);
   }
 });
+
+// Variáveis de gerenciamento de estado
+let currentDate = new Date();
+let records = [];
+let editingRecordId = null;
+
+// Inicialização do sistema
+async function initializeApp() {
+  await carregarRegistros();
+  render();
+}
 
 // Carrega os registros
 async function carregarRegistros() {
@@ -89,6 +90,7 @@ function generateId() {
 function getOrganLabel(organ) {
   if (organ === 'PM') return 'PM';
   if (organ === 'CM') return 'CM';
+  if (organ === '') return 'Outro';
   return '';
 }
 
@@ -124,7 +126,7 @@ function formatDateToMySQL(date) {
 async function addRecord(cityName, organType, content, quantity) {
   const dataSelecionada = new Date(currentDate);
 
-  const agora = Date();
+  const agora = new Date();
 
   // Ajusta a data do calendário para ter o horário atual do relógio
   dataSelecionada.setHours(
@@ -142,7 +144,7 @@ async function addRecord(cityName, organType, content, quantity) {
   };
 
   // Envia para o servidor via método POST
-  await fetch(api, {
+  const resposta = await fetch(api, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -150,11 +152,15 @@ async function addRecord(cityName, organType, content, quantity) {
     body: JSON.stringify(novo),
   });
 
+  if (!resposta.ok) {
+    throw new Error('Erro ao salvar registro');
+  }
+
   await carregarRegistros();
 }
 
 // Atualiza um registro existente
-async function updateRecords(id, cityName, organType, content, quantity) {
+async function updateRecord(id, cityName, organType, content, quantity) {
   const registroOriginal = records.find((r) => r.id == id);
 
   if (!registroOriginal) return;
@@ -212,10 +218,12 @@ function renderRecords() {
   const dayRecords = getRecordsForDate(currentDate);
   const recordsList = document.getElementById('recordsList');
 
+  dayRecords.sort((a, b) => new Date(b.date) - new Date(a.date));
+
   if (dayRecords.length === 0) {
     recordsList.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state-icon><i class="bi bi-mailbox"></i></div>
+        <div class="empty-state-icon"><i class="bi bi-mailbox"></i></div>
         <p>Nenhum registro para este dia</p>
       </div>
     `;
@@ -337,6 +345,7 @@ document.getElementById('prevDayBtn').addEventListener('click', () => {
 // Aumenta um dia na data atual e atualiza a tela
 document.getElementById('nextDayBtn').addEventListener('click', () => {
   currentDate.setDate(currentDate.getDate() + 1);
+  render();
 });
 
 // Reseta a data do calendário para a data atual do computador
@@ -435,7 +444,7 @@ document.getElementById('editForm').addEventListener('submit', async (e) => {
 });
 
 document.getElementById('closeModalBtn').addEventListener('click', () => {
-  document.getElementById('editModal'.classList.remove('active'));
+  document.getElementById('editModal').classList.remove('active');
 });
 
 document.getElementById('cancelEditBtn').addEventListener('click', () => {
@@ -468,8 +477,8 @@ function pesquisarCidade(texto) {
 
   if (encontrados.length === 0) {
     container.innerHTML = `
-      <div class=""empty-state>
-        <p>Nenhum resultdo encontrado</p>
+      <div class="empty-state">
+        <p>Nenhum resultado encontrado</p>
       </div>
     `;
     return;
@@ -491,7 +500,7 @@ function pesquisarCidade(texto) {
     .sort((a, b) => b[0].localeCompare(a[0]))
     .forEach(([data, lista]) => {
       html += `
-      <div class'sender-group>
+      <div class='sender-group'>
         <div class='sender-name'><i class="bi bi-calendar-date"></i> ${formatDate(new Date(data))}</div>
         </div>
     `;

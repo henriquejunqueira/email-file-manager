@@ -6,7 +6,7 @@ class Tabelas {
         create table if not exists publicacoes(
             id int not null auto_increment primary key,
             cityName varchar(100),
-            organType enum("PM", "CM") default "PM",
+            organType enum("Prefeitura (PM)", "Câmara (CM)", "Outro") default "Prefeitura (PM)",
             content varchar(255),
             quantity int,
             date datetime not null default current_timestamp

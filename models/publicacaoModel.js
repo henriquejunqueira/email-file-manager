@@ -24,9 +24,12 @@ class PublicacaoModel {
     const dados = {
       cityName: novaPublicacao.cityName,
       organType: novaPublicacao.organType,
-      content: novaPublicacao.quantity,
+      content: novaPublicacao.content,
+      quantity: novaPublicacao.quantity,
       date: novaPublicacao.date,
     };
+
+    console.log(dados);
 
     const sql = 'INSERT INTO publicacoes SET ?';
     return this.executaQuery(sql, dados);
