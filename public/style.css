@@ -807,3 +807,10 @@ button {
     width: 100%;
   }
 }
+
+.rodape {
+  text-align: center;
+  padding: 10px 0;
+  background-color: var(--primary-dark);
+  color: var(--white);
+}
